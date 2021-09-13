@@ -4,7 +4,8 @@ Some scripts for accelerating subreads-to-CCS alignment step of [DeepConsensus](
 
 Before running DeepConsensus, subreads should be aligned to CCS correctly. In the [Quick start for DeepConsensus](https://github.com/google/deepconsensus/blob/main/docs/quick_start.md), 
 this step is achieved by an 'all subreads to all CCS reads alignment' (pbmm2 align) and a following molecule-name-based filtering. However, the all-to-all alignment could be extremely slow.
-A simple strategy is split the CCS reads and subreads into trunks based on molecule names before alignment. After trunk-to-trunk alignment, merge output BAM files using `samtools merge`.
+A simple strategy is split the CCS reads and subreads into trunks based on molecule names before alignment. After trunk-to-trunk alignment, merge output BAM files (`samtools merge`) then 
+sort (`samtools sort`) and run molecule-name-based filtering (`awk`).
 
 ## split_ccs_fasta.py
 
